@@ -28,11 +28,14 @@ CREATE TABLE `transaction`(
     `contractAddress` VARCHAR(10),
     `cumulativeGasUsed` INT NOT NULL,
     `effectiveGasPrice` INT NOT NULL,
-    `from` CHAR(42) NOT NULL,
+    `sender` CHAR(42) NOT NULL,
     `gasUsed` INT NOT NULL,
     `status` VARCHAR(5) NOT NULL,
-    `to` CHAR(42) NOT NULL,
+    `receiver` CHAR(42) NOT NULL,
     `transactionHash` CHAR(66) NOT NULL,
     `transactionIndex` INT NOT NULL,
     `type` VARCHAR(10) NOT NULL
 );
+
+-- transaction 테이블에서 처음에 sender와 receiver 대신 from과 to를 컬럼명으로 썼었는데,
+-- sql 쿼리에 from이 있기 때문에 syntax error가 발생하므로 주의!

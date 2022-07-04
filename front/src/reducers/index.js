@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import create from './create';
 import latest from './latest';
 import block from './block';
 import tx from './tx';
@@ -11,6 +12,7 @@ const persist = {
 };
 
 const rootReducer = combineReducers({
+    create,
     latest,
     block,
     tx,

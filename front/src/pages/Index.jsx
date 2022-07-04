@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { create_request } from '../reducers/create';
 import { latest_request } from '../reducers/latest';
 
 const Header = styled.header`
@@ -42,6 +43,7 @@ const Index = () => {
     const { latest } = useSelector((state) => state);
 
     useEffect(() => {
+        dispatch(create_request());
         dispatch(latest_request());
     }, [dispatch]);
     return (
@@ -84,8 +86,8 @@ const Index = () => {
                                     <Span style={{ width: '120px' }}>{v.transactionHash.slice(0, 10)}...</Span>
                                 </StyledLink>
                                 <Span style={{ width: '250px' }}>
-                                    <div>From: {v.sender.slice(0, 20)}...</div>
-                                    <div>To: {v.receiver.slice(0, 20)}...</div>
+                                    <div>From : {v.sender.slice(0, 20)}...</div>
+                                    <div>To : {v.receiver.slice(0, 20)}...</div>
                                 </Span>
                                 <Span style={{ width: '50px', float: 'right', textAlign: 'center' }}>{v.blockNumber}</Span>
                             </Info>

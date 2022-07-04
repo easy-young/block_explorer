@@ -5,9 +5,9 @@ const { pool } = require('../db');
 
 const web3 = new Web3(new Web3.providers.HttpProvider('http://127.0.0.1:9000'));
 
-router.post('/:hash', async (req, res) => {
-    const { hash } = req.params;
-    const sql = `SELECT * FROM transaction where transactionHash='${hash}'`;
+router.post('/:idx', async (req, res) => {
+    const idx = req.body.payload;
+    const sql = `SELECT * FROM transaction where transactionHash='${idx}'`;
     try {
         const [[result]] = await pool.execute(sql);
         res.json(result);

@@ -129,7 +129,7 @@ router.post('/create', async (req, res) => {
 });
 
 router.post('/:idx', async (req, res) => {
-    const { idx } = req.params;
+    const idx = req.body.payload;
     const sql = `SELECT * FROM block WHERE number=${idx}`;
     try {
         const [[result]] = await pool.execute(sql);

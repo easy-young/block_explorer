@@ -37,7 +37,6 @@ const block = (state = initialState, action) => {
                 ...state,
             };
         case BLOCK.SUCCESS:
-            console.log(action.payload);
             const {
                 difficulty,
                 extraData,

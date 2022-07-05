@@ -5,6 +5,9 @@ import Index from './pages/Index';
 import Block from './pages/Block';
 import Tx from './pages/Tx';
 
+import Blocks from './pages/more/Blocks';
+import Txs from './pages/more/Txs';
+
 function App() {
     return (
         <BrowserRouter>
@@ -12,6 +15,8 @@ function App() {
                 <Route path="/" index element={<Index />} />
                 <Route path="/block/:idx" element={<Block />} />
                 <Route path="/tx/:idx" element={<Tx />} />
+                <Route path="/more/block" element={<Blocks />} />
+                <Route path="/more/tx" element={<Txs />} />
             </Routes>
         </BrowserRouter>
     );

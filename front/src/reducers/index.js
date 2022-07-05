@@ -5,6 +5,8 @@ import create from './create';
 import latest from './latest';
 import block from './block';
 import tx from './tx';
+import all from './all';
+import pages from './pages';
 
 const persist = {
     key: 'jenny',
@@ -16,6 +18,8 @@ const rootReducer = combineReducers({
     latest,
     block,
     tx,
+    all,
+    pages,
 });
 
 export default persistReducer(persist, rootReducer);

@@ -22,7 +22,6 @@ const latest = (state = initialState, action) => {
                 ...state,
             };
         case LATEST.SUCCESS:
-            console.log(action.payload);
             return {
                 ...state,
                 blocks: [...action.payload.block],

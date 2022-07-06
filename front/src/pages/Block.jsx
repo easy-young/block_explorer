@@ -37,7 +37,7 @@ export const StyledLink = styled(Link)`
     text-align: center;
     line-height: 36px;
     text-decoration: none;
-    background-color: #ffbfeb;
+    background-color: #dddddd;
     border-radius: 10px;
 `;
 
@@ -71,7 +71,12 @@ const Block = () => {
                     <Div>timestamp : {block.timestamp}</Div>
                     <Div>totalDifficulty: {block.totalDifficulty}</Div>
                     <Div>transactionsRoot : {block.transactionsRoot}</Div>
-                    <StyledLink to="/">Main</StyledLink>
+                    <div style={{ display: 'flex' }}>
+                        <StyledLink to="/" style={{ marginRight: '15px' }}>
+                            Main
+                        </StyledLink>
+                        <StyledLink to="/more/block">Back</StyledLink>
+                    </div>
                 </Box>
             )}
         </Container>

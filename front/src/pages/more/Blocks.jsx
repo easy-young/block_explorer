@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { all_blocks_request } from '../../reducers/all';
 import { pages_change, pages_minus, pages_plus } from '../../reducers/pages';
-import { Wrap } from '../Index';
+import { Wrap, StyledLink } from '../Index';
 
 const Box = styled.div`
     display: flex;
@@ -37,10 +37,11 @@ const Pages = styled.div`
 
 const Btn = styled.button`
     width: 30px;
-    height: 20px;
+    height: 30px;
     margin: 0 10px;
-    background-color: #b5b5b5;
-    border: none;
+    background-color: #cccccc;
+    border: 1px solid #a1a1a1;
+    border-radius: 10px;
     cursor: pointer;
 `;
 
@@ -64,13 +65,17 @@ const Blocks = () => {
     const boolArr = Array(10).fill(false);
 
     const plus = () => {
-        for (let i = 0; i < 10; i++) numArr[i] = numArr[i] + 10;
-        dispatch(pages_plus(numArr[0]));
+        if (numArr[9] * 10 < blocks.length) {
+            for (let i = 0; i < 10; i++) numArr[i] = numArr[i] + 10;
+            dispatch(pages_plus(numArr[0]));
+        }
     };
 
     const minus = () => {
-        for (let i = 0; i < 10; i++) numArr[i] = numArr[i] - 10;
-        dispatch(pages_minus(numArr[0]));
+        if (numArr[0] > 10) {
+            for (let i = 0; i < 10; i++) numArr[i] = numArr[i] - 10;
+            dispatch(pages_minus(numArr[0]));
+        }
     };
 
     const change = (v) => {
@@ -105,7 +110,9 @@ const Blocks = () => {
                           <List key={i}>
                               <Span>{v.number}</Span>
                               <Span>{v.difficulty}</Span>
-                              <Span>{v.hash}</Span>
+                              <StyledLink to={'/block/' + v.number}>
+                                  <Span>{v.hash}</Span>
+                              </StyledLink>
                               <Span>{v.miner}</Span>
                               <Span>{v.timestamp}</Span>
                           </List>

@@ -7,8 +7,8 @@ const web3 = new Web3(new Web3.providers.HttpProvider('http://127.0.0.1:9000'));
 
 router.post('/', async (req, res) => {
     try {
-        const sql = `SELECT * FROM block ORDER BY number DESC LIMIT 10`;
-        const sql2 = `SELECT * FROM transaction ORDER BY blockNumber DESC, transactionIndex DESC LIMIT 10`;
+        const sql = `SELECT * FROM block ORDER BY number DESC LIMIT 15`;
+        const sql2 = `SELECT * FROM transaction ORDER BY blockNumber DESC, transactionIndex DESC LIMIT 15`;
         const [result] = await pool.execute(sql);
         const [result2] = await pool.execute(sql2);
         res.json({ block: result, tx: result2 });

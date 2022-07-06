@@ -20,17 +20,7 @@ export const pages_change = createAction(PAGES.CHANGE, (payload) => payload);
 const pages = (state = initialState, action) => {
     switch (action.type) {
         case PAGES.PLUS:
-            return {
-                ...state,
-                current: action.payload,
-                move: (action.payload - 1) * 10 + 1,
-                flag: true,
-            };
         case PAGES.MINUS:
-            if (action.payload < 0)
-                return {
-                    ...state,
-                };
             return {
                 ...state,
                 current: action.payload,

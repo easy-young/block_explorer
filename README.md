@@ -26,7 +26,7 @@ Search Bar에서 Block Number, Block Hash, Tx Hash에 대한 검색이 가능하
 
 Block Reward = 각 Tx의 GasUsed * GasPrice 합 + 2 ether 
 
-(GasPrice의 단위는 10 ^ 9 wei(=10 gwei), 1 ether = 10 ^ 18 wei)
+(GasPrice의 단위는 10 ^ 9 wei(= 1 gwei), 1 ether = 10 ^ 18 wei)
 
 <br/>
 
@@ -44,6 +44,6 @@ R 기능은 비교적 간단한데, Block 테이블과 Tx 테이블에서 SELECT
 
 C 기능은 Block과 Tx 생성을 동시에 처리하는 것이 효율적이다. 그 이유는 Block과 Tx가 1 : N 관계에 Mapping되기 때문이다.
 
-Private Network의 총 Block 수(X)가 DB의 Block 테이블의 행 갯수(Y)보다 많다면 최신화되어야 하는 상태라고 할 수 있다.
+Private Network의 총 Block 수(X)가 DB의 Block 테이블의 행 갯수(Y)보다 많다면 DB가 최신화되어야 하는 상태라고 할 수 있다.
 
 X - Y 만큼 for 문을 돌며 Block 테이블에 최신 Block들을 추가하고, 만약 각 Block에 Tx가 존재하면 Tx의 수 만큼 for 문을 돌며 최신 Tx를 추가한다.

@@ -22,7 +22,7 @@ const Tx = () => {
                     <Div>blockNumber : {tx.blockNumber}</Div>
                     <Div>contractAddress : {tx.contractAddress}</Div>
                     <Div>cumulativeGasUsed : {tx.cumulativeGasUsed}</Div>
-                    <Div>effectiveGasPrice : {tx.effectiveGasPrice}</Div>
+                    <Div>gasPrice : {tx.gasPrice}</Div>
                     <Div>from : {tx.sender}</Div>
                     <Div>gasUsed : {tx.gasUsed}</Div>
                     <Div>status : {tx.status}</Div>

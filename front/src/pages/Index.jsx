@@ -27,7 +27,7 @@ const Header = styled.header`
 const Search = styled.div`
     display: flex;
     margin: 0 auto 6px;
-    width: 1180px;
+    width: 1240px;
     height: 50px;
 `;
 
@@ -54,7 +54,7 @@ const Option = styled.option`
 `;
 
 const Input = styled.input`
-    width: 870px;
+    width: 930px;
     height: 40px;
     margin: auto 10px;
     padding: 0 10px;
@@ -80,6 +80,7 @@ const Box = styled.div`
 const Half = styled.div``;
 
 const Latest = styled.div`
+    width: 640px;
     height: 420px;
     overflow-y: auto;
     -ms-overflow-style: none;
@@ -94,15 +95,12 @@ const H3 = styled.h3`
 `;
 
 const Info = styled.div`
+    display: flex;
     margin: 0 20px;
     height: 54px;
     border-bottom: 1px solid #797979;
     box-sizing: border-box;
     background-color: whitesmoke;
-`;
-
-const Info2 = styled(Info)`
-    display: flex;
 `;
 
 const More = styled.div`
@@ -124,7 +122,8 @@ const Span = styled.span`
 
 const Span2 = styled.span`
     display: inline-block;
-    width: 260px;
+    width: 280px;
+    text-align: center;
     margin-top: 6px;
 `;
 
@@ -212,8 +211,8 @@ const Index = () => {
                     >
                         <Span style={{ width: '50px' }}>Bk</Span>
                         <Span style={{ width: '60px' }}>No.</Span>
-                        <Span style={{ width: '400px' }}>Miner</Span>
-                        <Span style={{ width: '80px', float: 'right' }}>Gas</Span>
+                        <Span style={{ width: '350px' }}>Miner</Span>
+                        <Span style={{ width: '140px', float: 'right' }}>Reward</Span>
                     </Info>
                     <Latest>
                         {latest &&
@@ -223,8 +222,8 @@ const Index = () => {
                                     <StyledLink to={'/block/' + v.number}>
                                         <Span style={{ width: '60px' }}>{v.number}</Span>
                                     </StyledLink>
-                                    <Span style={{ width: '400px' }}>{v.miner.slice(0, 35)}...</Span>
-                                    <Span style={{ width: '80px', float: 'right' }}>{v.gasUsed}</Span>
+                                    <Span style={{ width: '350px' }}>{v.miner.slice(0, 30)}...</Span>
+                                    <Span style={{ width: '140px', float: 'right' }}>{v.reward === null ? 2 : v.reward} ETH</Span>
                                 </Info>
                             ))}
                     </Latest>
@@ -244,14 +243,14 @@ const Index = () => {
                     >
                         <Span style={{ width: '50px', textAlign: 'center' }}>Tx</Span>
                         <Span style={{ width: '130px' }}>Hash</Span>
-                        <Span style={{ width: '250px' }}>Account</Span>
+                        <Span style={{ width: '280px' }}>Account</Span>
                         <Span style={{ width: '50px' }}>Index</Span>
-                        <Span style={{ width: '60px', marginLeft: '10px' }}>Block</Span>
+                        <Span style={{ width: '80px' }}>Block</Span>
                     </Info>
                     <Latest>
                         {latest &&
                             latest.txs.map((v, i) => (
-                                <Info2 key={i}>
+                                <Info key={i}>
                                     <Span style={{ width: '50px', textAlign: 'center' }}>Tx</Span>
                                     <StyledLink to={'/tx/' + v.transactionHash}>
                                         <Span style={{ width: '130px' }}>{v.transactionHash.slice(0, 10)}...</Span>
@@ -261,8 +260,8 @@ const Index = () => {
                                         <div style={{ lineHeight: '14px', marginTop: '10px' }}>To : {v.receiver.slice(0, 20)}...</div>
                                     </Span2>
                                     <Span style={{ width: '50px' }}>{v.transactionIndex}</Span>
-                                    <Span style={{ width: '60px' }}>{v.blockNumber}</Span>
-                                </Info2>
+                                    <Span style={{ width: '80px' }}>{v.blockNumber}</Span>
+                                </Info>
                             ))}
                     </Latest>
                     <StyledLink to="/more/tx">

@@ -54,7 +54,7 @@ const Block = () => {
         <Container>
             {block && (
                 <Box>
-                    <Div style={{ fontWeight: 'bolder', borderBottom: '1px solid black' }}>number : {block.number}</Div>
+                    <Div style={{ fontWeight: 'bolder', borderBottom: '1px solid black' }}>Block {block.number}</Div>
                     <Div>difficulty : {block.difficulty}</Div>
                     <Div>extraData : {block.extraData}</Div>
                     <Div>gasLimit : {block.gasLimit}</Div>

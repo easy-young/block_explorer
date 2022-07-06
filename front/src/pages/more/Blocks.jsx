@@ -2,40 +2,56 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { all_blocks_request } from '../../reducers/all';
-import { pages_change, pages_minus, pages_plus } from '../../reducers/pages';
+import { pages_change, pages_color, pages_minus, pages_plus } from '../../reducers/pages';
 import { Wrap, StyledLink } from '../Index';
 
-const Box = styled.div`
+export const Box = styled.div`
     display: flex;
     flex-direction: column;
+    height: 600px;
+    /* background-color: red; */
 `;
 
-const Title = styled.div`
+export const Title = styled.div`
     display: flex;
     justify-content: space-evenly;
-    height: 40px;
+    align-items: center;
+    height: 50px;
     border-bottom: 1px solid black;
 `;
 
-const List = styled.div`
+export const List = styled.div`
     display: flex;
     justify-content: space-evenly;
-    height: 40px;
+    height: 50px;
     line-height: 40px;
     border-bottom: 1px solid black;
 `;
 
-const Span = styled.span`
+export const Span = styled.span`
     display: inline-block;
 `;
 
-const Pages = styled.div`
+export const Pages = styled.div`
     display: flex;
     justify-content: center;
     margin-top: 30px;
+
+    .page0,
+    .page1,
+    .page2,
+    .page3,
+    .page4,
+    .page5,
+    .page6,
+    .page7,
+    .page8,
+    .page9 {
+        background-color: red;
+    }
 `;
 
-const Btn = styled.button`
+export const Btn = styled.button`
     width: 30px;
     height: 30px;
     margin: 0 10px;
@@ -48,7 +64,7 @@ const Btn = styled.button`
 const Blocks = () => {
     const dispatch = useDispatch();
     const { blocks } = useSelector((state) => state.all);
-    const { current, move, point, flag } = useSelector((state) => state.pages);
+    const { current, move, point, flag, color } = useSelector((state) => state.pages);
 
     const numArr = [
         current,
@@ -62,7 +78,8 @@ const Blocks = () => {
         current + 8,
         current + 9,
     ];
-    const boolArr = Array(10).fill(false);
+
+    let colorNum = 0;
 
     const plus = () => {
         if (numArr[9] * 10 < blocks.length) {
@@ -79,7 +96,9 @@ const Blocks = () => {
     };
 
     const change = (v) => {
+        colorNum = (v - 1) % 10;
         dispatch(pages_change(v));
+        dispatch(pages_color(colorNum));
     };
 
     useEffect(() => {
@@ -89,6 +108,7 @@ const Blocks = () => {
     return (
         <Wrap>
             <Box>
+                <div>All Blocks</div>
                 <Title>
                     <Span>No.</Span>
                     <Span>Difficulty</Span>
@@ -121,7 +141,7 @@ const Blocks = () => {
             <Pages>
                 <Btn onClick={minus}>&lt;</Btn>
                 {numArr.map((v, i) => (
-                    <Btn onClick={() => change(v)} key={i}>
+                    <Btn onClick={() => change(v)} className={color === i && 'page' + i} key={i}>
                         {v}
                     </Btn>
                 ))}

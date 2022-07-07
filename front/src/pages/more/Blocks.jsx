@@ -8,28 +8,50 @@ import { Wrap, StyledLink } from '../Index';
 export const Box = styled.div`
     display: flex;
     flex-direction: column;
-    height: 600px;
-    /* background-color: red; */
+    align-items: center;
+    height: 610px;
+
+    .last {
+        border: none;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+    }
+`;
+
+export const Header = styled.div`
+    height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    font-weight: bolder;
+    text-align: center;
 `;
 
 export const Title = styled.div`
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
+    width: 1400px;
     height: 50px;
+    font-weight: bolder;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
     border-bottom: 1px solid black;
+    background-color: #e3e3e3;
 `;
 
 export const List = styled.div`
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
+    width: 1400px;
     height: 50px;
-    line-height: 40px;
+    line-height: 50px;
     border-bottom: 1px solid black;
+    background-color: whitesmoke;
 `;
 
 export const Span = styled.span`
     display: inline-block;
+    text-align: center;
 `;
 
 export const Pages = styled.div`
@@ -47,7 +69,7 @@ export const Pages = styled.div`
     .page7,
     .page8,
     .page9 {
-        background-color: red;
+        background-color: #e1e1e1;
     }
 `;
 
@@ -55,9 +77,20 @@ export const Btn = styled.button`
     width: 30px;
     height: 30px;
     margin: 0 10px;
-    background-color: #cccccc;
+    background-color: #c5c5c5;
     border: 1px solid #a1a1a1;
     border-radius: 10px;
+    cursor: pointer;
+`;
+
+export const MainBtn = styled.button`
+    width: 70px;
+    height: 36px;
+    font-size: 16px;
+    font-weight: bolder;
+    border: none;
+    border-radius: 10px;
+    background-color: #dddddd;
     cursor: pointer;
 `;
 
@@ -108,33 +141,35 @@ const Blocks = () => {
     return (
         <Wrap>
             <Box>
-                <div>All Blocks</div>
+                <Header>All Blocks</Header>
                 <Title>
-                    <Span>No.</Span>
-                    <Span>Difficulty</Span>
-                    <Span>Hash</Span>
-                    <Span>Miner</Span>
-                    <Span>timestamp</Span>
+                    <Span style={{ width: '30px' }}>No.</Span>
+                    <Span style={{ width: '50px' }}>Difficulty</Span>
+                    <Span style={{ width: '570px' }}>Hash</Span>
+                    <Span style={{ width: '340px' }}>Miner</Span>
+                    <Span style={{ width: '140px' }}>Timestamp</Span>
                 </Title>
                 {blocks && flag === true
                     ? blocks.slice(move - 1, move + 9).map((v, i) => (
-                          <List key={i}>
-                              <Span>{v.number}</Span>
-                              <Span>{v.difficulty}</Span>
-                              <Span>{v.hash}</Span>
-                              <Span>{v.miner}</Span>
-                              <Span>{v.timestamp}</Span>
+                          <List key={i} className={i === 9 && 'last'}>
+                              <Span style={{ width: '30px' }}>{v.number}</Span>
+                              <Span style={{ width: '50px' }}>{v.difficulty}</Span>
+                              <StyledLink to={'/block/' + v.number}>
+                                  <Span style={{ width: '570px' }}>{v.hash}</Span>
+                              </StyledLink>
+                              <Span style={{ width: '340px' }}>{v.miner}</Span>
+                              <Span style={{ width: '140px' }}>{v.timestamp}</Span>
                           </List>
                       ))
                     : blocks.slice((point - 1) * 10, point * 10).map((v, i) => (
-                          <List key={i}>
-                              <Span>{v.number}</Span>
-                              <Span>{v.difficulty}</Span>
+                          <List key={i} className={i === 9 && 'last'}>
+                              <Span style={{ width: '30px' }}>{v.number}</Span>
+                              <Span style={{ width: '50px' }}>{v.difficulty}</Span>
                               <StyledLink to={'/block/' + v.number}>
-                                  <Span>{v.hash}</Span>
+                                  <Span style={{ width: '570px' }}>{v.hash}</Span>
                               </StyledLink>
-                              <Span>{v.miner}</Span>
-                              <Span>{v.timestamp}</Span>
+                              <Span style={{ width: '340px' }}>{v.miner}</Span>
+                              <Span style={{ width: '140px' }}>{v.timestamp}</Span>
                           </List>
                       ))}
             </Box>
@@ -147,6 +182,19 @@ const Blocks = () => {
                 ))}
                 <Btn onClick={plus}>&gt;</Btn>
             </Pages>
+            <StyledLink
+                to="/"
+                style={{
+                    margin: '20px auto 0',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    width: '70px',
+                    height: '36px',
+                }}
+            >
+                <MainBtn>Main</MainBtn>
+            </StyledLink>
         </Wrap>
     );
 };

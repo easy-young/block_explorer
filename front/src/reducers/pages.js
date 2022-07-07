@@ -28,6 +28,7 @@ const pages = (state = initialState, action) => {
                 ...state,
                 current: action.payload,
                 move: (action.payload - 1) * 10 + 1,
+                color: 0,
                 flag: true,
             };
         case PAGES.CHANGE:

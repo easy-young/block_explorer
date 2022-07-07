@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { all_txs_request } from '../../reducers/all';
 import { pages_change, pages_color, pages_minus, pages_plus } from '../../reducers/pages';
-import { Wrap } from '../Index';
-import { Box, Title, List, Span, Pages, Btn } from './Blocks';
+import { Wrap, StyledLink } from '../Index';
+import { Box, Header, Title, List, Span, Pages, Btn, MainBtn } from './Blocks';
 
 const Txs = () => {
     const dispatch = useDispatch();
@@ -52,30 +52,31 @@ const Txs = () => {
     return (
         <Wrap>
             <Box>
+                <Header>All Transactions</Header>
                 <Title>
-                    <Span>Block</Span>
-                    <Span>From</Span>
-                    <Span>To</Span>
-                    <Span>Tx Hash</Span>
-                    <Span>Index</Span>
+                    <Span style={{ width: '50px' }}>Block</Span>
+                    <Span style={{ width: '310px' }}>From</Span>
+                    <Span style={{ width: '310px' }}>To</Span>
+                    <Span style={{ width: '570px' }}>Tx Hash</Span>
+                    <Span style={{ width: '50px' }}>Index</Span>
                 </Title>
                 {txs && flag === true
                     ? txs.slice(move - 1, move + 9).map((v, i) => (
-                          <List key={i}>
-                              <Span>{v.blockNumber}</Span>
-                              <Span>{v.sender}</Span>
-                              <Span>{v.receiver}</Span>
-                              <Span>{v.transactionHash}</Span>
-                              <Span>{v.transactionIndex}</Span>
+                          <List key={i} className={i === 9 && 'last'}>
+                              <Span style={{ width: '50px' }}>{v.blockNumber}</Span>
+                              <Span style={{ width: '310px' }}>{v.sender.slice(0, 30)}...</Span>
+                              <Span style={{ width: '310px' }}>{v.receiver.slice(0, 30)}...</Span>
+                              <Span style={{ width: '570px' }}>{v.transactionHash.slice(0, 55)}...</Span>
+                              <Span style={{ width: '50px' }}>{v.transactionIndex}</Span>
                           </List>
                       ))
                     : txs.slice((point - 1) * 10, point * 10).map((v, i) => (
-                          <List key={i}>
-                              <Span>{v.blockNumber}</Span>
-                              <Span>{v.sender}</Span>
-                              <Span>{v.receiver}</Span>
-                              <Span>{v.transactionHash}</Span>
-                              <Span>{v.transactionIndex}</Span>
+                          <List key={i} className={i === 9 && 'last'}>
+                              <Span style={{ width: '50px' }}>{v.blockNumber}</Span>
+                              <Span style={{ width: '310px' }}>{v.sender.slice(0, 30)}...</Span>
+                              <Span style={{ width: '310px' }}>{v.receiver.slice(0, 30)}...</Span>
+                              <Span style={{ width: '570px' }}>{v.transactionHash.slice(0, 55)}...</Span>
+                              <Span style={{ width: '50px' }}>{v.transactionIndex}</Span>
                           </List>
                       ))}
             </Box>
@@ -88,6 +89,19 @@ const Txs = () => {
                 ))}
                 <Btn onClick={plus}>&gt;</Btn>
             </Pages>
+            <StyledLink
+                to="/"
+                style={{
+                    margin: '20px auto 0',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    width: '70px',
+                    height: '36px',
+                }}
+            >
+                <MainBtn>Main</MainBtn>
+            </StyledLink>
         </Wrap>
     );
 };

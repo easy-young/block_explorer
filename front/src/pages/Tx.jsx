@@ -18,16 +18,15 @@ const Tx = () => {
             {tx && (
                 <Box>
                     <Div style={{ fontWeight: 'bolder', borderBottom: '1px solid black' }}>txHash : {tx.transactionHash}</Div>
-                    <Div>blockHash : {tx.blockHash}</Div>
                     <Div>blockNumber : {tx.blockNumber}</Div>
-                    <Div>contractAddress : {tx.contractAddress}</Div>
-                    <Div>cumulativeGasUsed : {tx.cumulativeGasUsed}</Div>
-                    <Div>gasPrice : {tx.gasPrice}</Div>
+                    <Div>blockHash : {tx.blockHash}</Div>
                     <Div>from : {tx.sender}</Div>
-                    <Div>gasUsed : {tx.gasUsed}</Div>
-                    <Div>status : {tx.status}</Div>
                     <Div>to : {tx.receiver}</Div>
-                    <Div>transactionIndex : {tx.transactionIndex}</Div>
+                    <Div>gasPrice : {tx.gasPrice} wei</Div>
+                    <Div>gasUsed : {tx.gasUsed} wei</Div>
+                    <Div>cumulativeGasUsed : {tx.cumulativeGasUsed} wei</Div>
+                    <Div>txIndex : {tx.transactionIndex}</Div>
+                    <Div>status : {tx.status}</Div>
                     <Div>type : {tx.type}</Div>
                     <StyledLink to="/">Main</StyledLink>
                 </Box>

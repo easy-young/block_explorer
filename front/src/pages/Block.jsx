@@ -68,7 +68,16 @@ const Block = () => {
                     <Div>sha3Uncles : {block.sha3Uncles}</Div>
                     <Div>size : {block.size}</Div>
                     <Div>stateRoot : {block.stateRoot}</Div>
-                    <Div>timestamp : {block.timestamp}</Div>
+                    <Div>
+                        timestamp :{' '}
+                        {Math.floor(block.timestamp) / 60 > 0
+                            ? Math.floor(block.timestamp) / 3600 > 0
+                                ? Math.floor(block.timestamp / 3 / 24 / 3600) > 0
+                                    ? Math.floor(block.timestamp / 24 / 3600) + ' days'
+                                    : Math.floor(block.timestamp / 3600) + ' hours'
+                                : Math.floor(block.timestamp / 60) + ' minutes'
+                            : Math.floor(block.timestamp) + ' seconds'}
+                    </Div>
                     <Div>totalDifficulty: {block.totalDifficulty}</Div>
                     <Div>transactionsRoot : {block.transactionsRoot}</Div>
                     <div style={{ display: 'flex' }}>

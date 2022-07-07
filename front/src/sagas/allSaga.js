@@ -18,7 +18,6 @@ async function allBlocksAPI(action) {
 
 async function allTxsAPI(action) {
     const result = await axios.post(back_address + '/all/tx', action);
-    console.log('tx', result);
     return result;
 }
 

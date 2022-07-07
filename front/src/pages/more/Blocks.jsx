@@ -147,7 +147,7 @@ const Blocks = () => {
                     <Span style={{ width: '50px' }}>Difficulty</Span>
                     <Span style={{ width: '570px' }}>Hash</Span>
                     <Span style={{ width: '340px' }}>Miner</Span>
-                    <Span style={{ width: '140px' }}>Timestamp</Span>
+                    <Span style={{ width: '100px' }}>Timestamp</Span>
                 </Title>
                 {blocks && flag === true
                     ? blocks.slice(move - 1, move + 9).map((v, i) => (
@@ -158,7 +158,15 @@ const Blocks = () => {
                                   <Span style={{ width: '570px' }}>{v.hash}</Span>
                               </StyledLink>
                               <Span style={{ width: '340px' }}>{v.miner}</Span>
-                              <Span style={{ width: '140px' }}>{v.timestamp}</Span>
+                              <Span style={{ width: '100px' }}>
+                                  {Math.floor(v.timestamp) / 60 > 0
+                                      ? Math.floor(v.timestamp) / 3600 > 0
+                                          ? Math.floor(v.timestamp / 3 / 24 / 3600) > 0
+                                              ? Math.floor(v.timestamp / 24 / 3600) + ' days'
+                                              : Math.floor(v.timestamp / 3600) + ' hours'
+                                          : Math.floor(v.timestamp / 60) + ' minutes'
+                                      : Math.floor(v.timestamp) + ' seconds'}
+                              </Span>
                           </List>
                       ))
                     : blocks.slice((point - 1) * 10, point * 10).map((v, i) => (
@@ -169,7 +177,15 @@ const Blocks = () => {
                                   <Span style={{ width: '570px' }}>{v.hash}</Span>
                               </StyledLink>
                               <Span style={{ width: '340px' }}>{v.miner}</Span>
-                              <Span style={{ width: '140px' }}>{v.timestamp}</Span>
+                              <Span style={{ width: '100px' }}>
+                                  {Math.floor(v.timestamp) / 60 > 0
+                                      ? Math.floor(v.timestamp) / 3600 > 0
+                                          ? Math.floor(v.timestamp / 3 / 24 / 3600) > 0
+                                              ? Math.floor(v.timestamp / 24 / 3600) + ' days'
+                                              : Math.floor(v.timestamp / 3600) + ' hours'
+                                          : Math.floor(v.timestamp / 60) + ' minutes'
+                                      : Math.floor(v.timestamp) + ' seconds'}
+                              </Span>
                           </List>
                       ))}
             </Box>

@@ -130,7 +130,12 @@ router.post('/create', async (req, res) => {
 
 router.post('/:idx', async (req, res) => {
     const idx = req.body.payload;
-    const sql = `SELECT * FROM block WHERE number=${idx}`;
+    // select number, (unix_timestamp() - timestamp) as timestamp from block where number=169;
+    const sql = `SELECT difficulty, extraData, gasLimit, gasUsed, hash, 
+                    miner, mixHash, nonce, number, parentHash, 
+                    receiptsRoot, sha3Uncles, size, stateRoot, totalDifficulty,
+                    transactionsRoot, (unix_timestamp() - timestamp) AS timestamp
+                    FROM block WHERE number=${idx}`;
     try {
         const [[result]] = await pool.execute(sql);
         res.json(result);

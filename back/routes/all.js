@@ -4,7 +4,11 @@ const { pool } = require('../db');
 
 router.post('/block', async (req, res) => {
     // const sql = `SELECT * FROM block ORDER BY number DESC LIMIT 100`;
-    const sql = `SELECT * FROM block ORDER BY number DESC`;
+    const sql = `SELECT difficulty, extraData, gasLimit, gasUsed, hash, 
+                    miner, mixHash, nonce, number, parentHash, 
+                    receiptsRoot, sha3Uncles, size, stateRoot, totalDifficulty,
+                    transactionsRoot, (unix_timestamp() - timestamp) AS timestamp 
+                FROM block ORDER BY number DESC`;
     try {
         const [result] = await pool.execute(sql);
         res.json(result);

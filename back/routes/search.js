@@ -19,7 +19,6 @@ router.post('/blockHash', async (req, res) => {
     const sql = `SELECT number FROM block WHERE hash='${blockHash}'`;
     try {
         const [[result]] = await pool.execute(sql);
-        console.log(result);
         res.json(result);
     } catch (e) {
         console.error(e.message);
